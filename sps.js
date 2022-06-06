@@ -23,6 +23,7 @@ var userName = '';
 var numOfGamesPlayed = 0;
 var numOfPlayerWin = 0;
 var numOfComputerWin = 0;
+var numOfGamesDraw = 0;
 //for player
 var playerBeatsComputer = function (playerObj , computerObj) {
   return (
@@ -52,7 +53,6 @@ var main = function (input) {
     userName = input;
     mode = 'scissors paper stone';
     myOutputValue = 'Hello ' + userName;
-
   }else if (mode == 'scissors paper stone'){
 // Randomly return one of scissors,paper or stone.
   var generateObject = function () {
@@ -83,17 +83,19 @@ var computerObj = generateObject();
  numOfGamesPlayed += 1;
  numOfPlayerWin += 1;
  winRate = Math.floor((numOfPlayerWin / numOfGamesPlayed) * 100); 
- return `${userName} choose: ${playerObj}<br> computer choose: ${computerObj} <br><br>Congrat ${userName}.You win!😇 <br><br>You win ${winRate}% of the games.<br><br>You won ${numOfPlayerWin} times.<br> Computer won ${numOfComputerWin} times. `
+ return `${userName} choose: ${playerObj}<br> computer choose: ${computerObj} <br><br>Congrat ${userName}.You win!😇 <br><br>You win ${winRate}% of the games.<br><br>You won ${numOfPlayerWin} times.<br> Computer won ${numOfComputerWin} times.<br><br> Total number of played times: ${numOfGamesPlayed} `
 };
 //for lose
 if (computerBeatsPlayer(playerObj,computerObj)) {
  numOfGamesPlayed += 1;
  numOfComputerWin += 1;
  winRate = Math.floor((numOfComputerWin / numOfGamesPlayed) * 100); 
-  return `${userName} choose: ${playerObj}<br> computer choose: ${computerObj} <br><br>You lose🌚<br> Try again.Don't Give up. <br><br>Computer win ${winRate}% of the games.<br><br> You won ${numOfPlayerWin} times.<br>Computer won ${numOfComputerWin} times.`
+  return `${userName} choose: ${playerObj}<br> computer choose: ${computerObj} <br><br>You lose🌚<br> Try again.Don't Give up. <br><br>Computer win ${winRate}% of the games.<br><br> You won ${numOfPlayerWin} times.<br>Computer won ${numOfComputerWin} times.<br><br> Total number of played times: ${numOfGamesPlayed}`
   };
   //draw
   if (playerDrawComputer(playerObj,computerObj)) {
-  return 'This is draw!. Computer does not satisfied.'
+    numOfGamesPlayed += 1 ;
+    numOfGamesDraw +=1;
+  return `This is draw!. Computer does not satisfied.<br><br>Draw times:${numOfGamesDraw} <br> Total number of played times: ${numOfGamesPlayed}`
   };
 }
