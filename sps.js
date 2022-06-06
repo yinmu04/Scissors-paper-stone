@@ -45,11 +45,18 @@ var playerDrawComputer = function (playerObj , computerObj) {
     (playerObj == reversed_stone && computerObj == stone)
   );
 }
+var main = function (input) {
+  var myOutputValue = '';
+  if (mode == 'Please input your name') {
+  //from  5.2 
+    userName = input;
+    mode = 'scissors paper stone';
+    myOutputValue = 'Hello ' + userName;
 
+  }else if (mode == 'scissors paper stone'){
 // Randomly return one of scissors,paper or stone.
-var generateObject = function () {
+  var generateObject = function () {
   var randomNum = Math.floor(Math.random() *3) +1;
-
   // Return the object that corresponds to the relevant number
   if (randomNum == 1) {
     return scissors;
@@ -61,16 +68,9 @@ var generateObject = function () {
   return stone;
   }
 }
-
-var main = function (input) {
-  var myOutputValue = '';
-  if (mode == 'Please input your name') {
-  //from  5.2 
-    userName = input;
-    mode = 'scissors paper stone';
-    myOutputValue = 'Hello ' + userName;
-  }if (input != scissors && input != paper && input != stone) {
-    return `Hello, Please input 'scissors', 'paper' or 'stone'`;
+  }
+  if (input != scissors && input != paper && input != stone) {
+    return `Hello ${userName}, Please input 'scissors', 'paper' or 'stone'`;
   }
 var playerObj = input;
 var computerObj = generateObject();
@@ -83,14 +83,14 @@ var computerObj = generateObject();
  numOfGamesPlayed += 1;
  numOfPlayerWin += 1;
  winRate = Math.floor((numOfPlayerWin / numOfGamesPlayed) * 100); 
- return `${userName} choose ${playerObj} computer choose ${computerObj} so you win!<br> Congrat ${userName}. <br><br>You win ${winRate}% of the games.<br><br>You won ${numOfPlayerWin} times.<br> Computer won ${numOfComputerWin} times. `
+ return `${userName} choose: ${playerObj}<br> computer choose: ${computerObj} <br><br>Congrat ${userName}.You win!😇 <br><br>You win ${winRate}% of the games.<br><br>You won ${numOfPlayerWin} times.<br> Computer won ${numOfComputerWin} times. `
 };
 //for lose
 if (computerBeatsPlayer(playerObj,computerObj)) {
  numOfGamesPlayed += 1;
  numOfComputerWin += 1;
  winRate = Math.floor((numOfComputerWin / numOfGamesPlayed) * 100); 
-  return `${userName} choose ${playerObj} computer choose ${computerObj} so you lose! <br><br> Try again. <br><br>Computer win ${winRate}% of the games.<br><br> You won ${numOfPlayerWin} times.<br>Computer won ${numOfComputerWin} times.`
+  return `${userName} choose: ${playerObj}<br> computer choose: ${computerObj} <br><br>You lose🌚<br> Try again.Don't Give up. <br><br>Computer win ${winRate}% of the games.<br><br> You won ${numOfPlayerWin} times.<br>Computer won ${numOfComputerWin} times.`
   };
   //draw
   if (playerDrawComputer(playerObj,computerObj)) {
